@@ -21,8 +21,10 @@ public class FileContentSingleThreadParserDemo {
 				System.out.println(++counter 
 						+ ", " + candidate.getName()
 						+ ", " + candidate.length());
+				//isReadble - required to check if have permission to access this file
+				//else candidate.listFiles() returns null - leading to NPE at line 18
 			} else if (candidate.isDirectory()
-					&& Files.isReadable(candidate.toPath())) {
+					&& Files.isReadable(candidate.toPath())) { 
 				parse(candidate.listFiles());
 			}
 		}

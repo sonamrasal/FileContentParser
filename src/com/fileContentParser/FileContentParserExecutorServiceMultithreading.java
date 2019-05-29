@@ -7,19 +7,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class FileContentParserExecutorServiceMultithreading {
-	private static /*volatile */int counter = 0;
+	private static int counter = 0;
 	private static ExecutorService threadPool = Executors.newFixedThreadPool(25);
 
 	public static void main(String[] args) {
 		File baseFolder = new File("C:\\Windows");
 		if (baseFolder.isDirectory()) {
 			parse(baseFolder.listFiles());
-		}
-		try {
-			threadPool.awaitTermination(2, TimeUnit.MINUTES);
-		} catch (InterruptedException e) {
-			threadPool.shutdownNow();
-			System.out.println("Finished printing");
 		}
 	}
 
